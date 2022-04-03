@@ -14,9 +14,31 @@ Install the module (this is for Debian-based distros):
 cp target/release/libpam_multifac.so /lib/x86_64-linux-gnu/security/pam_multifac.so
 ```
 
+Adjust the config file:
+```
+# /etc/pam_multifac.toml
+
+[duo]
+integration_key = ""
+secret_key = ""
+api_hostname = "api-xxxxxxxx.duosecurity.com"
+
+[ldap]
+url = "ldap://127.0.0.1:389"
+bind_dn = "cn=readonly,dc=example,dc=com"
+bind_pw = "changeme"
+search_base = "dc=example,dc=com"
+search_filter = "(&(objectClass=posixAccount)(cn={{username}}))"
+search_attr = "yubiKeyId"
+
+[yubico]
+client_id = ""
+api_key = ""
+```
+
 Setup PAM config:
 ```
-vim /etc/pam.d/common-auth
+# /etc/pam.d/common-auth
 
 # here are the per-package modules (the "Primary" block)
 auth    [success=3 default=ignore]      pam_unix.so nullok_secure
