@@ -1,0 +1,16 @@
+[duo]
+integration_key = ""
+secret_key = ""
+api_hostname = "api-xxxxxxxx.duosecurity.com"
+
+[ldap]
+url = "ldap://127.0.0.1:389"
+bind_dn = "cn=readonly,dc=example,dc=com"
+bind_pw = "changeme"
+search_base = "dc=example,dc=com"
+search_filter = "(&(objectClass=posixAccount)(cn={{username}}))"
+search_attr = "yubiKeyId"
+
+[yubico]
+client_id = ""
+api_key = ""
