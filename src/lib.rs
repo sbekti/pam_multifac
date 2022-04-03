@@ -103,9 +103,7 @@ impl PamServiceModule for PamMultifac {
             Err(e) => return e,
         };
 
-        if input == "backdoor" {
-            return PamError::SUCCESS;
-        } else if input == "push" {
+        if input == "push" {
             match validate_duo(
                 user,
                 &cfg.duo.integration_key,
